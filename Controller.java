@@ -29,8 +29,11 @@ public class Controller {
 
     public Controller() {
         SwingUtilities.invokeLater(() -> {
-            loginScreen = new LoginScreen();
-            loginScreen.getLoginButton().addActionListener(new ActionListener() {
+            //loginScreen = new LoginScreen();
+            Staff s1 = new Staff("1","Helter's Tavern","Bob", "Sure", "12/09/2004","bob@mail.com","Bartender", null, null, false, -1, -1, false);
+            StaffScreen sc = new StaffScreen(s1);
+
+            /* loginScreen.getLoginButton().addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
@@ -52,6 +55,8 @@ public class Controller {
                  //   forgotPassword();
                 }
             });
+
+             */
 
         });
     }

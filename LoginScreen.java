@@ -74,6 +74,7 @@ public class LoginScreen extends GUI {
 
 
     private void add_labels() {
+
         Font font = new Font("Segoe UI Light", Font.PLAIN, 60);
         JLabel label = new JLabel("RotaPro");
         label.setFont(font);

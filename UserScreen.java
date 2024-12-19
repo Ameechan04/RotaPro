@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public abstract class UserScreen extends GUI {
-    /*
+
     protected JPanel mainPanel;
     protected JPanel leftPanel;
     protected JPanel topPanel;
@@ -21,8 +21,6 @@ public abstract class UserScreen extends GUI {
 
     protected JPanel submitPass;
     protected User user;
-    protected Admin admin;
-
 
     public UserScreen(User user) {
         super();
@@ -33,15 +31,16 @@ public abstract class UserScreen extends GUI {
 
         leftPanel = new JPanel();
         leftPanel.setPreferredSize(new Dimension(300, screenHeight - 50));
-        leftPanel.setBackground(Color.decode("#8AA29E"));
+        leftPanel.setBackground(Color.decode("#9AA6B2"));
         leftPanel.setLayout(null);
         frame.add(leftPanel, BorderLayout.WEST);
 
 
         topPanel = new JPanel();
         topPanel.setPreferredSize(new Dimension(screenWidth, 58));
-        topPanel.setBackground(Color.decode("#8AA29E"));
+        topPanel.setBackground(Color.decode("#9AA6B2"));
         frame.add(topPanel, BorderLayout.NORTH);
+        topPanel.setLayout(null);
 
 
         mainPanel = new JPanel();
@@ -55,83 +54,16 @@ public abstract class UserScreen extends GUI {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+
+        Font font = new Font("Segoe UI Light", Font.PLAIN, 30);
+        JLabel label = new JLabel("RotaPro");
+        label.setFont(font);
+        label.setForeground(Color.decode("#FFFFFF"));
+        label.setBounds(topPanel.getWidth() - 110,1,300,60);
+        topPanel.add(label);
+
 
         add_profile_image();
-        add_labels();
-        exit_button();
-        logout_button();
-        account_details_button();
-    }
-
-    public UserScreen(User userX) {
-        super();
-        this.userX = userX;
-
-        int screenWidth = return_screenSize().width;
-        int screenHeight = return_screenSize().height;
-
-        leftPanel = new JPanel();
-        leftPanel.setPreferredSize(new Dimension(300, screenHeight - 50));
-        leftPanel.setBackground(Color.decode("#8AA29E"));
-        leftPanel.setLayout(null);
-        frame.add(leftPanel, BorderLayout.WEST);
-
-
-        topPanel = new JPanel();
-        topPanel.setPreferredSize(new Dimension(screenWidth, 58));
-        topPanel.setBackground(Color.decode("#8AA29E"));
-        frame.add(topPanel, BorderLayout.NORTH);
-
-
-        mainPanel = new JPanel();
-        mainPanel.setBackground(Color.decode("#E3F2FD"));
-        mainPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-
-        mainPanel.setLayout(null);
-
-        frame.add(mainPanel, BorderLayout.CENTER);
-
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-
-        add_labels();
-        exit_button();
-        logout_button();
-    }
-
-    public UserScreen(Admin admin) {
-        super();
-        this.admin = admin;
-
-        int screenWidth = return_screenSize().width;
-        int screenHeight = return_screenSize().height;
-
-        leftPanel = new JPanel();
-        leftPanel.setPreferredSize(new Dimension(300, screenHeight - 50));
-        leftPanel.setBackground(Color.decode("#8AA29E"));
-        leftPanel.setLayout(null);
-        frame.add(leftPanel, BorderLayout.WEST);
-
-
-        topPanel = new JPanel();
-        topPanel.setPreferredSize(new Dimension(screenWidth, 58));
-        topPanel.setBackground(Color.decode("#8AA29E"));
-        frame.add(topPanel, BorderLayout.NORTH);
-
-
-        mainPanel = new JPanel();
-        mainPanel.setBackground(Color.decode("#E3F2FD"));
-        mainPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-
-        mainPanel.setLayout(null);
-
-        frame.add(mainPanel, BorderLayout.CENTER);
-
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-
         add_labels();
         exit_button();
         logout_button();
@@ -179,9 +111,9 @@ public abstract class UserScreen extends GUI {
         exitB.setBounds(25, 700, 80, 30);
         exitB.setFont(new Font("Arial", Font.PLAIN, 16));
         exitB.setOpaque(true);
-        exitB.setBackground(Color.decode("#D44646"));
+        exitB.setBackground(Color.decode("#D85461"));
         exitB.setForeground(Color.decode("#FFFFFF"));
-        exitB.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // 1-point border
+        exitB.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         leftPanel.add(exitB);
 
         exitB.addActionListener(new ActionListener() {
@@ -198,9 +130,9 @@ public abstract class UserScreen extends GUI {
         logOut.setBounds(25, 630, 250, 50);
         logOut.setFont(new Font("Inter", Font.PLAIN, 20));
         logOut.setOpaque(true);
-        logOut.setBackground(Color.decode("#D44646"));
+        logOut.setBackground(Color.decode("#D85461"));
         logOut.setForeground(Color.decode("#FFFFFF"));
-        logOut.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        logOut.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         leftPanel.add(logOut);
 
         logOut.addActionListener(new ActionListener() {
@@ -218,27 +150,9 @@ public abstract class UserScreen extends GUI {
         });
     }
 
-    protected void account_details_button() {
-        JButton accountDetails = new JButton("Account Details");
-        accountDetails.setBounds(25, 350, 250, 50);
-        accountDetails.setFont(new Font("Inter", Font.PLAIN, 20));
-        accountDetails.setOpaque(true);
-        accountDetails.setBackground(Color.decode("#686963"));
-        accountDetails.setForeground(Color.decode("#FFFFFF"));
-        accountDetails.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // 1-point border
-        leftPanel.add(accountDetails);
 
-        accountDetails.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                view_account_details(user);
-            }
-
-        });
-    }
-
-    protected void view_account_details(UserInfo user) {
-        JFrame account_details_frame = new JFrame(user.getFirstname() + " " + user.getSurname() + "'s Account Details");
+    protected void view_account_details(User user) {
+        JFrame account_details_frame = new JFrame("Account Details");
         account_details_frame.setSize(400, 550);
         account_details_frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         account_details_frame.setVisible(true);
@@ -249,6 +163,7 @@ public abstract class UserScreen extends GUI {
         account_details_frame.add(curr_panel);
         curr_panel.setBackground(Color.decode("#8AA29E"));
 
+        /*
         outputLabel = new JLabel(user.getFirstname() + " " + user.getSurname() + "'s Details");
         outputLabel.setBounds(20, 10, 380, 100);
         outputLabel.setFont(new Font("Arial", Font.BOLD, 20));
@@ -263,6 +178,7 @@ public abstract class UserScreen extends GUI {
         outputLabel.setBounds(45, 115, 300, 100);
         outputLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         curr_panel.add(outputLabel);
+        */
 
         outputLabel = new JLabel("ID/username: " + user.getUserId());
         outputLabel.setBounds(45, 150, 300, 100);
@@ -348,5 +264,6 @@ public abstract class UserScreen extends GUI {
         panel.add(submitPass);
     }
 
-     */
+
+    protected abstract void add_labels(Staff s);
 }
