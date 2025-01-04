@@ -30,9 +30,14 @@ public class Controller {
     public Controller() {
         SwingUtilities.invokeLater(() -> {
             //loginScreen = new LoginScreen();
-            Staff s1 = new Staff("1","Helter's Tavern","Bob", "Sure", "12/09/2004","bob@mail.com","Bartender", null, null, false, -1, -1, false);
+            Staff s1 = new Staff("1","Joe's Tavern","Bob", "Sure", "12/09/2004","bob@mail.com","Bartender", null, null, false, -1, -1, false);
             StaffScreen sc = new StaffScreen(s1);
 
+            ArrayList<Staff> staffArrayList = new ArrayList<>();
+            staffArrayList.add(s1);
+
+            Company c = new Company("1000", "Joe's Tavern", "support@joetavern.com", "0141587985", staffArrayList, null, null, 0.5, false, "Weekly", 10.20);
+           ManagerScreen ms = new ManagerScreen(c);
             /* loginScreen.getLoginButton().addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e)

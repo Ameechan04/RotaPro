@@ -75,7 +75,7 @@ public abstract class UserScreen extends GUI {
         imageLabel.setIcon(image);
 
         imageLabel.setOpaque(true);
-        imageLabel.setBackground(Color.GRAY);
+        imageLabel.setBackground(Color.decode("#E3F2FD"));
 
 
         if (image.getIconWidth() == -1) {
@@ -266,4 +266,6 @@ public abstract class UserScreen extends GUI {
 
 
     protected abstract void add_labels(Staff s);
+
+    protected abstract void add_labels(Company c);
 }

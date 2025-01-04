@@ -9,56 +9,46 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
 
-public class StaffScreen extends UserScreen{
+public class ManagerScreen extends UserScreen{
     private JLabel companyNameLabel;
     public int currentScreen;
 
 
 
 
-    private JButton overviewB, accountDetailsB, viewAllShiftsB,curriculumInfoB,academicYearB,examDetailB, resetAllPasswords, viewDetailsCurrPend, createNewTeacherB, assignTeacherToSubjectB, removeTeacherB, removeTeacherSubjectB,
-            viewStudentCurrB, addStudentB,removeStudentB,notifyStudentsB, createNewSubB, editSubB, removeSubB, setExamCountB, changePassB, changeMaxB, setMaxOpSubjectsB, setMinOpSubjectsB, setReqSB
-            ;
-    // Student st = new Student(10000, "password123", User.Role.STUDENT, "example@email.com", "001" , "Joe", "Bob");
+    private JButton  overviewB, viewRotaB, createNoticeB, manageEmployeesB,settingsB;
 
     private ArrayList<Shift> shifts;
-    Staff staff;
-    public StaffScreen(Staff staff){
-        super(staff);
-        this.staff = staff;
+    Company company;
+    public ManagerScreen(Company company){
+        super(company);
+        this.company = company;
         currentScreen = 0;
-        add_labels(staff);
+        add_labels(company);
         add_buttons();
         setToOverview();
         colourSelectedScreenButton();
     }
 
+
     @Override
     protected void add_labels(Staff s) {
-        outputLabel = new JLabel(s.getFirstname() + " " + s.getSurname());
+    }
+
+    @Override
+    protected void add_labels(Company c) {
+        outputLabel = new JLabel(c.getCompany_name());
         outputLabel.setBounds(30, 260, 300, 35);
         outputLabel.setFont(new Font("Arial", Font.PLAIN, 25));
         outputLabel.setForeground(Color.white);
         leftPanel.add(outputLabel);
 
 
-        outputLabel = new JLabel(s.getRole());
-        outputLabel.setBounds(30,295,300,25);
-        outputLabel.setFont(new Font("Arial", Font.PLAIN, 20));
-        outputLabel.setForeground(Color.white);
-        leftPanel.add(outputLabel);
-
-        outputLabel = new JLabel("User ID:" + s.getUserId());
-        outputLabel.setBounds(30,325,300,25);
-        outputLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-        outputLabel.setForeground(Color.white);
-        leftPanel.add(outputLabel);
-
 
 
 
         Font font = new Font("Arial", Font.PLAIN, 30);
-        JLabel label = new JLabel(s.getCompanyName());
+        JLabel label = new JLabel(c.getCompanyName());
         label.setFont(font);
         label.setForeground(Color.decode("#FFFFFF"));
         FontMetrics metrics = label.getFontMetrics(font);
@@ -71,11 +61,6 @@ public class StaffScreen extends UserScreen{
 
     }
 
-    @Override
-    protected void add_labels(Company c) {
-
-    }
-
     private void setToOverview() {
         mainPanel.setLayout(null);
         clearMainPanel();
@@ -83,7 +68,7 @@ public class StaffScreen extends UserScreen{
         colourSelectedScreenButton();
 
         LocalDate currentDate = LocalDate.now();
-        JLabel outputLabel = new JLabel("Welcome " + staff.getFirstname() + "! Today is the " + currentDate + ".");
+        JLabel outputLabel = new JLabel("Welcome! Today is the " + currentDate + ".");
         outputLabel.setBounds(100, 20, 1200, 100);
         outputLabel.setFont(new Font("Segoe UI Light", Font.PLAIN, 35));
         outputLabel.setForeground(Color.decode("#686963"));
@@ -279,8 +264,10 @@ public class StaffScreen extends UserScreen{
     protected void colourSelectedScreenButton() {
         JButton[] buttons = {
                 overviewB,
-                accountDetailsB,
-                viewAllShiftsB,
+                viewRotaB,
+                createNoticeB,
+                manageEmployeesB,
+                settingsB
         };
 
         for (JButton button : buttons) {
@@ -316,23 +303,41 @@ public class StaffScreen extends UserScreen{
         leftPanel.add(overviewB);
 
 
-        accountDetailsB = new JButton("Account Details");
-        accountDetailsB.setBounds(25, 430, 250,50);
-        accountDetailsB.setFont(new Font("Inter", Font.PLAIN, 20));
-        accountDetailsB.setOpaque(true);
-        accountDetailsB.setBackground(Color.decode("#686963"));
-        accountDetailsB.setForeground(Color.decode("#FFFFFF"));
-        accountDetailsB.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        leftPanel.add(accountDetailsB);
+        viewRotaB = new JButton("View Rota");
+        viewRotaB.setBounds(25, 430, 250,50);
+        viewRotaB.setFont(new Font("Inter", Font.PLAIN, 20));
+        viewRotaB.setOpaque(true);
+        viewRotaB.setBackground(Color.decode("#686963"));
+        viewRotaB.setForeground(Color.decode("#FFFFFF"));
+        viewRotaB.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        leftPanel.add(viewRotaB);
 
-        viewAllShiftsB = new JButton(   "View All Shifts");
-        viewAllShiftsB.setBounds(25, 500, 250,50);
-        viewAllShiftsB.setFont(new Font("Inter", Font.PLAIN, 20));
-        viewAllShiftsB.setOpaque(true);
-        viewAllShiftsB.setBackground(Color.decode("#686963"));
-        viewAllShiftsB.setForeground(Color.decode("#FFFFFF"));
-        viewAllShiftsB.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        leftPanel.add(viewAllShiftsB);
+        createNoticeB = new JButton(   "Create Notice");
+        createNoticeB.setBounds(25, 500, 250,50);
+        createNoticeB.setFont(new Font("Inter", Font.PLAIN, 20));
+        createNoticeB.setOpaque(true);
+        createNoticeB.setBackground(Color.decode("#686963"));
+        createNoticeB.setForeground(Color.decode("#FFFFFF"));
+        createNoticeB.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        leftPanel.add(createNoticeB);
+
+        manageEmployeesB = new JButton("Manage Employees");
+        manageEmployeesB.setBounds(25, 570, 250,50);
+        manageEmployeesB.setFont(new Font("Inter", Font.PLAIN, 20));
+        manageEmployeesB.setOpaque(true);
+        manageEmployeesB.setBackground(Color.decode("#686963"));
+        manageEmployeesB.setForeground(Color.decode("#FFFFFF"));
+        manageEmployeesB.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        leftPanel.add(manageEmployeesB);
+
+        settingsB = new JButton("Settings");
+        settingsB.setBounds(25, 640, 250,50);
+        settingsB.setFont(new Font("Inter", Font.PLAIN, 20));
+        settingsB.setOpaque(true);
+        settingsB.setBackground(Color.decode("#686963"));
+        settingsB.setForeground(Color.decode("#FFFFFF"));
+        settingsB.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        leftPanel.add(settingsB);
 
 
         overviewB.addActionListener(new ActionListener() {
@@ -342,13 +347,13 @@ public class StaffScreen extends UserScreen{
             }
         });
 
-        accountDetailsB.addActionListener(new ActionListener() {
+        viewRotaB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setToAccountDetails();
             }
         });
-        viewAllShiftsB.addActionListener(new ActionListener() {
+        createNoticeB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setToViewAllShifts();
@@ -375,195 +380,35 @@ public class StaffScreen extends UserScreen{
         this.overviewB = overviewB;
     }
 
-    public JButton getAccountDetailsB() {
-        return accountDetailsB;
+    public JButton getViewRotaB() {
+        return viewRotaB;
     }
 
-    public void setAccountDetailsB(JButton accountDetailsB) {
-        this.accountDetailsB = accountDetailsB;
+    public void setViewRotaB(JButton viewRotaB) {
+        this.viewRotaB = viewRotaB;
     }
 
-    public JButton getViewAllShiftsB() {
-        return viewAllShiftsB;
+    public JButton getCreateNoticeB() {
+        return createNoticeB;
     }
 
-    public void setViewAllShiftsB(JButton viewAllShiftsB) {
-        this.viewAllShiftsB = viewAllShiftsB;
+    public void setCreateNoticeB(JButton createNoticeB) {
+        this.createNoticeB = createNoticeB;
     }
 
-    public JButton getCurriculumInfoB() {
-        return curriculumInfoB;
+    public JButton getManageEmployeesB() {
+        return manageEmployeesB;
     }
 
-    public void setCurriculumInfoB(JButton curriculumInfoB) {
-        this.curriculumInfoB = curriculumInfoB;
+    public void setManageEmployeesB(JButton manageEmployeesB) {
+        this.manageEmployeesB = manageEmployeesB;
     }
 
-    public JButton getAcademicYearB() {
-        return academicYearB;
+    public JButton getSettingsB() {
+        return settingsB;
     }
 
-    public void setAcademicYearB(JButton academicYearB) {
-        this.academicYearB = academicYearB;
-    }
-
-    public JButton getExamDetailB() {
-        return examDetailB;
-    }
-
-    public void setExamDetailB(JButton examDetailB) {
-        this.examDetailB = examDetailB;
-    }
-
-    public JButton getResetAllPasswords() {
-        return resetAllPasswords;
-    }
-
-    public void setResetAllPasswords(JButton resetAllPasswords) {
-        this.resetAllPasswords = resetAllPasswords;
-    }
-
-    public JButton getViewDetailsCurrPend() {
-        return viewDetailsCurrPend;
-    }
-
-    public void setViewDetailsCurrPend(JButton viewDetailsCurrPend) {
-        this.viewDetailsCurrPend = viewDetailsCurrPend;
-    }
-
-    public JButton getCreateNewTeacherB() {
-        return createNewTeacherB;
-    }
-
-    public void setCreateNewTeacherB(JButton createNewTeacherB) {
-        this.createNewTeacherB = createNewTeacherB;
-    }
-
-    public JButton getAssignTeacherToSubjectB() {
-        return assignTeacherToSubjectB;
-    }
-
-    public void setAssignTeacherToSubjectB(JButton assignTeacherToSubjectB) {
-        this.assignTeacherToSubjectB = assignTeacherToSubjectB;
-    }
-
-    public JButton getRemoveTeacherB() {
-        return removeTeacherB;
-    }
-
-    public void setRemoveTeacherB(JButton removeTeacherB) {
-        this.removeTeacherB = removeTeacherB;
-    }
-
-    public JButton getRemoveTeacherSubjectB() {
-        return removeTeacherSubjectB;
-    }
-
-    public void setRemoveTeacherSubjectB(JButton removeTeacherSubjectB) {
-        this.removeTeacherSubjectB = removeTeacherSubjectB;
-    }
-
-    public JButton getViewStudentCurrB() {
-        return viewStudentCurrB;
-    }
-
-    public void setViewStudentCurrB(JButton viewStudentCurrB) {
-        this.viewStudentCurrB = viewStudentCurrB;
-    }
-
-    public JButton getAddStudentB() {
-        return addStudentB;
-    }
-
-    public void setAddStudentB(JButton addStudentB) {
-        this.addStudentB = addStudentB;
-    }
-
-    public JButton getRemoveStudentB() {
-        return removeStudentB;
-    }
-
-    public void setRemoveStudentB(JButton removeStudentB) {
-        this.removeStudentB = removeStudentB;
-    }
-
-    public JButton getNotifyStudentsB() {
-        return notifyStudentsB;
-    }
-
-    public void setNotifyStudentsB(JButton notifyStudentsB) {
-        this.notifyStudentsB = notifyStudentsB;
-    }
-
-    public JButton getCreateNewSubB() {
-        return createNewSubB;
-    }
-
-    public void setCreateNewSubB(JButton createNewSubB) {
-        this.createNewSubB = createNewSubB;
-    }
-
-    public JButton getEditSubB() {
-        return editSubB;
-    }
-
-    public void setEditSubB(JButton editSubB) {
-        this.editSubB = editSubB;
-    }
-
-    public JButton getRemoveSubB() {
-        return removeSubB;
-    }
-
-    public void setRemoveSubB(JButton removeSubB) {
-        this.removeSubB = removeSubB;
-    }
-
-    public JButton getSetExamCountB() {
-        return setExamCountB;
-    }
-
-    public void setSetExamCountB(JButton setExamCountB) {
-        this.setExamCountB = setExamCountB;
-    }
-
-    public JButton getChangePassB() {
-        return changePassB;
-    }
-
-    public void setChangePassB(JButton changePassB) {
-        this.changePassB = changePassB;
-    }
-
-    public JButton getChangeMaxB() {
-        return changeMaxB;
-    }
-
-    public void setChangeMaxB(JButton changeMaxB) {
-        this.changeMaxB = changeMaxB;
-    }
-
-    public JButton getSetMaxOpSubjectsB() {
-        return setMaxOpSubjectsB;
-    }
-
-    public void setSetMaxOpSubjectsB(JButton setMaxOpSubjectsB) {
-        this.setMaxOpSubjectsB = setMaxOpSubjectsB;
-    }
-
-    public JButton getSetMinOpSubjectsB() {
-        return setMinOpSubjectsB;
-    }
-
-    public void setSetMinOpSubjectsB(JButton setMinOpSubjectsB) {
-        this.setMinOpSubjectsB = setMinOpSubjectsB;
-    }
-
-    public JButton getSetReqSB() {
-        return setReqSB;
-    }
-
-    public void setSetReqSB(JButton setReqSB) {
-        this.setReqSB = setReqSB;
+    public void setSettingsB(JButton settingsB) {
+        this.settingsB = settingsB;
     }
 }
