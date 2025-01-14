@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -30,14 +32,20 @@ public class Controller {
     public Controller() {
         SwingUtilities.invokeLater(() -> {
             //loginScreen = new LoginScreen();
-            Staff s1 = new Staff("1","Joe's Tavern","Bob", "Sure", "12/09/2004","bob@mail.com","Bartender", null, null, false, -1, -1, false);
-            StaffScreen sc = new StaffScreen(s1);
+            Shift s1 = new Shift("001", LocalDate.of(2025,1,7), LocalTime.of(9,0), LocalTime.of(14,0), "Morning",0.0);
+            Shift s2 = new Shift("002", LocalDate.of(2025,1,8), LocalTime.of(12,0), LocalTime.of(18,0), "Evening", 0.0);
+
+            ArrayList<Shift> shifts = new ArrayList<>();
+            shifts.add(s1);
+            shifts.add(s2);
+            Staff staff1 = new Staff("1","Joe's Tavern","Bob", "Sure", "12/09/2004","bob@mail.com","Bartender", shifts, null, false, -1, -1, false);
+            StaffScreen sc = new StaffScreen(staff1);
 
             ArrayList<Staff> staffArrayList = new ArrayList<>();
-            staffArrayList.add(s1);
+            staffArrayList.add(staff1);
 
             Company c = new Company("1000", "Joe's Tavern", "support@joetavern.com", "0141587985", staffArrayList, null, null, 0.5, false, "Weekly", 10.20);
-           ManagerScreen ms = new ManagerScreen(c);
+          // ManagerScreen ms = new ManagerScreen(c);
             /* loginScreen.getLoginButton().addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e)

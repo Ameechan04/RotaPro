@@ -1,17 +1,19 @@
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Shift {
-    private final String shiftID;
-    private String date;
+    private final String shiftID, shiftType;
+    private LocalDate date;
     private LocalTime startTime, endTime;
     private double duration, overtime;
 
-    public Shift(String shiftID, String date, LocalTime startTime, LocalTime endTime, double overtime) {
+    public Shift(String shiftID, LocalDate date, LocalTime startTime, LocalTime endTime, String shiftType, double overtime) {
         this.shiftID = shiftID;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.shiftType = shiftType;
         this.overtime = overtime;
         duration = calculateDuration();
     }
@@ -21,15 +23,19 @@ public class Shift {
         return shiftDuration.toMinutes() / 60.0;
     }
 
+    public String getShiftType() {
+        return shiftType;
+    }
+
     public String getShiftID() {
         return shiftID;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

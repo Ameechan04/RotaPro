@@ -16,8 +16,7 @@ public class StaffScreen extends UserScreen{
 
 
 
-    private JButton overviewB, accountDetailsB, viewAllShiftsB,curriculumInfoB,academicYearB,examDetailB, resetAllPasswords, viewDetailsCurrPend, createNewTeacherB, assignTeacherToSubjectB, removeTeacherB, removeTeacherSubjectB,
-            viewStudentCurrB, addStudentB,removeStudentB,notifyStudentsB, createNewSubB, editSubB, removeSubB, setExamCountB, changePassB, changeMaxB, setMaxOpSubjectsB, setMinOpSubjectsB, setReqSB
+    private JButton overviewB, accountDetailsB, viewAllShiftsB, sendMessageB;
             ;
     // Student st = new Student(10000, "password123", User.Role.STUDENT, "example@email.com", "001" , "Joe", "Bob");
 
@@ -109,6 +108,123 @@ public class StaffScreen extends UserScreen{
         outputLabel.setForeground(Color.decode("#686963"));
         mainPanel.add(outputLabel);
 
+        outputLabel = new JLabel("Notices");
+        outputLabel.setBounds(900, 70, 1200, 100);
+        outputLabel.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
+        outputLabel.setForeground(Color.decode("#686963"));
+        mainPanel.add(outputLabel);
+
+        JTextArea noticeBox = new JTextArea("No recent notices");
+        noticeBox.setBounds(800, 150, 300, 375);
+        noticeBox.setWrapStyleWord(true); // Word wrapping for multi-line text
+        noticeBox.setLineWrap(true); // Enable line wrapping
+        noticeBox.setFont(new Font("Arial", Font.PLAIN, 16));
+        noticeBox.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Border around text box
+        noticeBox.setEditable(false); //
+        mainPanel.add(noticeBox);
+
+        sendMessageB = new JButton("Send Message to Manager");
+        sendMessageB.setBounds(800, 550, 300,50);
+        sendMessageB.setFont(new Font("Inter", Font.PLAIN, 18));
+        sendMessageB.setOpaque(true);
+        sendMessageB.setBackground(Color.decode("#F29615"));
+        sendMessageB.setForeground(Color.decode("#FFFFFF"));
+        sendMessageB.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        mainPanel.add(sendMessageB);
+
+        /* if (company.clockInSytem == True) {
+
+         */
+
+        JButton clockInB = new JButton("Clock In");
+        clockInB.setBounds(25, 650, 175,50);
+        clockInB.setFont(new Font("Inter", Font.PLAIN, 18));
+        clockInB.setOpaque(true);
+        clockInB.setBackground(Color.decode("#5DA832"));
+        clockInB.setForeground(Color.decode("#FFFFFF"));
+        clockInB.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        mainPanel.add(clockInB);
+
+        JButton clockOutB = new JButton("Clock Out");
+        clockOutB.setBounds(225, 650, 175,50);
+        clockOutB.setFont(new Font("Inter", Font.PLAIN, 18));
+        clockOutB.setOpaque(true);
+        clockOutB.setBackground(Color.decode("#9AA6B2"));
+        clockOutB.setForeground(Color.decode("#FFFFFF"));
+        clockOutB.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        mainPanel.add(clockOutB);
+
+        outputLabel = new JLabel("Current Shift: " + staff.getCurrentShift());
+        outputLabel.setBounds(420, 625, 1200, 100);
+        outputLabel.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
+        outputLabel.setForeground(Color.decode("#686963"));
+        mainPanel.add(outputLabel);
+
+        JPanel square = new JPanel();
+        square.setPreferredSize(new Dimension(25, 25));
+        square.setBackground(Color.decode("#F29615"));
+        square.setLayout(null);
+        square.setBounds(25,610,25,25);
+        mainPanel.add(square);
+
+        square = new JPanel();
+        square.setPreferredSize(new Dimension(25, 25));
+        square.setBackground(Color.decode("#5DA832"));
+        square.setLayout(null);
+        square.setBounds(160,610,25,25);
+        mainPanel.add(square);
+
+        square = new JPanel();
+        square.setPreferredSize(new Dimension(25, 25));
+        square.setBackground(Color.decode("#D62828"));
+        square.setLayout(null);
+        square.setBounds(300,610,25,25);
+        mainPanel.add(square);
+
+        square = new JPanel();
+        square.setPreferredSize(new Dimension(25, 25));
+        square.setBackground(Color.decode("#8AA29E"));
+        square.setLayout(null);
+        square.setBounds(410,610,25,25);
+        mainPanel.add(square);
+
+        square = new JPanel();
+        square.setPreferredSize(new Dimension(25, 25));
+        square.setBackground(Color.decode("#686963"));
+        square.setLayout(null);
+        square.setBounds(520,610,25,25);
+        mainPanel.add(square);
+
+        outputLabel = new JLabel("Morning Shift");
+        outputLabel.setBounds(55, 570, 800, 100);
+        outputLabel.setFont(new Font("Segoe UI Light", Font.PLAIN, 16));
+        outputLabel.setForeground(Color.decode("#686963"));
+        mainPanel.add(outputLabel);
+
+        outputLabel = new JLabel("Evening Shift");
+        outputLabel.setBounds(190, 570, 800, 100);
+        outputLabel.setFont(new Font("Segoe UI Light", Font.PLAIN, 16));
+        outputLabel.setForeground(Color.decode("#686963"));
+        mainPanel.add(outputLabel);
+
+        outputLabel = new JLabel("Night Shift");
+        outputLabel.setBounds(330, 570, 800, 100);
+        outputLabel.setFont(new Font("Segoe UI Light", Font.PLAIN, 16));
+        outputLabel.setForeground(Color.decode("#686963"));
+        mainPanel.add(outputLabel);
+
+        outputLabel = new JLabel("Unreleased");
+        outputLabel.setBounds(440, 570, 800, 100);
+        outputLabel.setFont(new Font("Segoe UI Light", Font.PLAIN, 16));
+        outputLabel.setForeground(Color.decode("#686963"));
+        mainPanel.add(outputLabel);
+
+        outputLabel = new JLabel("Not Working");
+        outputLabel.setBounds(550, 570, 800, 100);
+        outputLabel.setFont(new Font("Segoe UI Light", Font.PLAIN, 16));
+        outputLabel.setForeground(Color.decode("#686963"));
+        mainPanel.add(outputLabel);
+
         int currentYear = currentDate.getYear();
         int currentMonthI = currentDate.getMonthValue();
         String[][] calendarData = generateCalendarData(currentYear, currentMonthI);
@@ -123,46 +239,141 @@ public class StaffScreen extends UserScreen{
         };
         JTable calendarTable = new JTable(tableModel);
 
+        int cellSize = 70; // Size for square cells (e.g., 50x50)
+        calendarTable.setRowHeight(cellSize);
+        for (int i = 0; i < calendarTable.getColumnCount(); i++) {
+            calendarTable.getColumnModel().getColumn(i).setPreferredWidth(cellSize);
+        }
 
-        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
-        renderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+        DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+                if (!isSelected) {
+                    cell.setBackground(Color.decode("#8AA29E"));
+                }
+
+                if (value != null) {
+                    String rawValue = value.toString().replaceAll("<[^>]*>", ""); // Strip HTML tags
+                    rawValue = rawValue.trim(); // Clean up extra spaces
+
+
+                    if (rawValue.length() > 2) {
+                        int date = -1;
+
+                        // Extract the date based on content length and delimiters
+                        try {
+                            if (rawValue.contains("\u200B")) { // If Zero Width Space is used
+                                date = Integer.parseInt(rawValue.split("\u200B")[0]);
+                            } else if (rawValue.length() > 2 && rawValue.charAt(1) == ':') {
+                                // Additional info detected, extract the date (length suggests "7 09:00 - 14:00")
+                                date = Integer.parseInt(rawValue.substring(0, 1));
+                            } else if (rawValue.length() > 3 && rawValue.charAt(2) == ':') {
+                                // Two-digit day, extract accordingly
+                                date = Integer.parseInt(rawValue.substring(0, 2));
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println("Failed to parse date: " + rawValue);
+                        }
+
+                        for (Shift shift : staff.getAssignedShifts()) {
+                            if (shift.getDate().getDayOfMonth() == date) {
+                                switch (shift.getShiftType()) {
+                                    case "Morning":
+                                        cell.setBackground(Color.decode("#F29615"));
+                                        break;
+                                    case "Evening":
+                                        cell.setBackground(Color.decode("#5DA832"));
+                                        break;
+                                    case "Night":
+                                        cell.setBackground(Color.decode("#D62828"));
+                                        break;
+                                }
+                                cell.setForeground(Color.decode("#686963"));
+                                cell.setFont(new Font("Arial", Font.PLAIN, 13));
+                            }
+                        }
+                    } else if (rawValue.isEmpty()) {
+                        cell.setBackground(Color.decode("#686963"));
+                    } else {
+                        cell.setFont(new Font("Arial", Font.PLAIN, 22));
+                        cell.setBackground(Color.decode("#8AA29E"));
+
+                    }
+
+                }
+
+                // Set custom font and styling
+
+                cell.setForeground(Color.WHITE);
+                setHorizontalAlignment(SwingConstants.CENTER);
+
+                return cell;
+            }
+        };
         for (int i = 0; i < columnHeaders.length; i++) {
-            calendarTable.getColumnModel().getColumn(i).setCellRenderer(renderer);
+            calendarTable.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
         }
 
 
 
+       // calendarTable.setBounds(25, 150, 1100, 300);
+
         JTableHeader tableHeader = calendarTable.getTableHeader();
         tableHeader.setFont(new Font("Arial", Font.BOLD, 16));
-        calendarTable.setBounds(25, 150, 1100, 150);
-        mainPanel.add(calendarTable);
+
+
+        JScrollPane scrollPane = new JScrollPane(calendarTable);
+        scrollPane.setBounds(25, 150, 600, 450);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        scrollPane.setPreferredSize(new Dimension(calendarTable.getColumnCount() * cellSize, calendarTable.getRowCount() * cellSize)); // Set the size of the scrollPane to match the table's size
+
+        mainPanel.add(scrollPane);
+
+       // mainPanel.add(calendarTable);
         frame.setVisible(true);
         frame.repaint();
         frame.revalidate();
     }
 
-    private static String[][] generateCalendarData(int year, int month) {
-        YearMonth yearMonth = YearMonth.of(year, month);
-        LocalDate firstDayOfMonth = yearMonth.atDay(1);
-        int totalDaysInMonth = yearMonth.lengthOfMonth();
-        int firstDayOfWeek = firstDayOfMonth.getDayOfWeek().getValue() % 7; // 0 = Sunday
-
-        // Create a 6x7 grid for the calendar (at most 6 weeks)
-        String[][] calendar = new String[6][7];
+    public String[][] generateCalendarData(int year, int month) {
+        String[][] calendarData = new String[6][7]; // Assume max 6 rows for a month
         int day = 1;
+        LocalDate firstDayOfMonth = LocalDate.of(year, month, 1);
+        int firstDayIndex = firstDayOfMonth.getDayOfWeek().getValue() % 7;
 
-        // Populate the calendar grid
-        for (int row = 0; row < 6; row++) {
-            for (int col = 0; col < 7; col++) {
-                if (row == 0 && col < firstDayOfWeek || day > totalDaysInMonth) {
-                    calendar[row][col] = ""; // Empty cell
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                if (i == 0 && j < firstDayIndex || day > firstDayOfMonth.lengthOfMonth()) {
+                    // Empty cells for days before the 1st or after the last day of the month
+                    calendarData[i][j] = "";
                 } else {
-                    calendar[row][col] = String.valueOf(day);
+                    // Find the shift for the current day
+                    Shift shiftForDay = null;
+                    for (Shift shift : staff.getAssignedShifts()) {
+                        if (shift.getDate().getDayOfMonth() == day && shift.getDate().getMonthValue() == month) {
+                            shiftForDay = shift;
+                            break;
+                        }
+                    }
+
+                    // Display the day number, and if there's a shift, display the shift time
+                    if (shiftForDay != null) {
+                        calendarData[i][j] = "<html>" + day + "<br>" + "\u200B" + shiftForDay.getStartTime() + " - " + shiftForDay.getEndTime() + "</html>";
+                    } else {
+                        calendarData[i][j] = "<html>" + day + "<br></html>";
+                    }
+
+                    // Move to the next day
                     day++;
                 }
             }
         }
-        return calendar;
+
+        return calendarData;
     }
     private void setToAccountDetails() {
         mainPanel.setLayout(null);
@@ -171,15 +382,57 @@ public class StaffScreen extends UserScreen{
         colourSelectedScreenButton();
         JLabel outputLabel = new JLabel("Account Details");
         outputLabel.setBounds(mainPanel.getWidth() / 2 - 200, 0, 500, 100);
-        outputLabel.setFont(new Font("Arial", Font.BOLD, 30));
+        outputLabel.setFont(new Font("Segoe UI Light", Font.PLAIN, 30));
         outputLabel.setForeground(Color.decode("#686963"));
         mainPanel.add(outputLabel);
 
-        outputLabel = new JLabel("Teacher Accounts:");
-        outputLabel.setBounds(mainPanel.getWidth() / 2 - 175, 50, 500, 100);
-        outputLabel.setFont(new Font("Arial", Font.PLAIN, 25));
+        outputLabel = new JLabel("Hello, " + staff.getFirstname());
+        outputLabel.setBounds(100, 50, 500, 100);
+        outputLabel.setFont(new Font("Segoe UI Light", Font.PLAIN, 30));
         outputLabel.setForeground(Color.decode("#686963"));
         mainPanel.add(outputLabel);
+
+        final int onePercentW = mainPanel.getWidth() / 100;
+        final int onePercentH = mainPanel.getHeight() / 100;
+
+        JPanel leftSquare = new JPanel();
+        leftSquare.setPreferredSize(new Dimension(25, 25));
+        leftSquare.setBackground(Color.decode("#ffffff"));
+        leftSquare.setLayout(null);
+        leftSquare.setBounds(onePercentW * 4,onePercentH * 22,onePercentW * 28,onePercentH * 45);
+        mainPanel.add(leftSquare);
+
+        JPanel middleSquare = new JPanel();
+        middleSquare.setPreferredSize(new Dimension(25, 25));
+        middleSquare.setBackground(Color.decode("#ffffff"));
+        middleSquare.setLayout(null);
+        middleSquare.setBounds(onePercentW * 36,onePercentH * 22,onePercentW * 28,onePercentH * 45);
+        mainPanel.add(middleSquare);
+
+        JPanel rightSquare = new JPanel();
+        rightSquare.setPreferredSize(new Dimension(25, 25));
+        rightSquare.setBackground(Color.decode("#ffffff"));
+        rightSquare.setLayout(null);
+        rightSquare.setBounds(onePercentW * 68,onePercentH * 22,onePercentW * 28,onePercentH * 45);
+        mainPanel.add(rightSquare);
+
+        //LEFT SQUARE INFO:
+        outputLabel = new JLabel("Next Shift:");
+        outputLabel.setBounds(20, 10, 500, 100);
+        outputLabel.setFont(new Font("Segoe UI Light", Font.PLAIN, 18));
+        outputLabel.setForeground(Color.decode("#686963"));
+        leftSquare.add(outputLabel);
+
+        Shift nextShift = staff.getNextShift();
+        if (nextShift != null) {
+            outputLabel = new JLabel(String.valueOf(nextShift.getDate()));
+        } else {
+            outputLabel = new JLabel("No upcoming shifts.");
+        }
+        outputLabel.setBounds(20, 50, 500, 100);
+        outputLabel.setFont(new Font("Segoe UI Light", Font.PLAIN, 30));
+        outputLabel.setForeground(Color.decode("#686963"));
+        leftSquare.add(outputLabel);
 
 
         frame.setVisible(true);
@@ -230,48 +483,6 @@ public class StaffScreen extends UserScreen{
         frame.setVisible(true);
         frame.repaint();
         frame.revalidate();
-    }
-
-
-
-    private void setToCurriculum() {
-        mainPanel.setLayout(null);
-        clearMainPanel();
-        currentScreen = 3;
-        colourSelectedScreenButton();
-        JLabel outputLabel = new JLabel("Curriculum Management");
-        outputLabel.setBounds(mainPanel.getWidth() / 2 - 200, 0, 500, 100);
-        outputLabel.setFont(new Font("Arial", Font.BOLD, 30));
-        outputLabel.setForeground(Color.decode("#686963"));
-        mainPanel.add(outputLabel);
-        // Subject s = new Subject(ID,CORE,NAME,MAX MARK,PASS MARK, SCHOOL ID) + no of students
-        outputLabel = new JLabel("All subjects:");
-        outputLabel.setBounds(mainPanel.getWidth() / 2 - 200, 50, 500, 100);
-        outputLabel.setFont(new Font("Arial", Font.PLAIN, 25));
-        outputLabel.setForeground(Color.decode("#686963"));
-        mainPanel.add(outputLabel);
-
-        String[] criteriaOptions = {
-                "Name",
-                "Subject ID",
-                "Teachers",
-                "Maximum Possible Marks",
-                "Pass Mark",
-                "Current Number of Students",
-                "Number of Exams",
-                "Core Subject",
-                "Optional Subject",
-        };
-
-        JComboBox<String> criteriaDropdown = new JComboBox<>(criteriaOptions);
-        criteriaDropdown.setFont(new Font("Arial", Font.PLAIN, 16));
-        criteriaDropdown.setBounds(800, 50, 250, 50);
-        mainPanel.add(criteriaDropdown);
-
-        frame.setVisible(true);
-        frame.repaint();
-        frame.revalidate();
-
     }
 
 
@@ -391,179 +602,11 @@ public class StaffScreen extends UserScreen{
         this.viewAllShiftsB = viewAllShiftsB;
     }
 
-    public JButton getCurriculumInfoB() {
-        return curriculumInfoB;
+    public JButton getSendMessageB() {
+        return sendMessageB;
     }
 
-    public void setCurriculumInfoB(JButton curriculumInfoB) {
-        this.curriculumInfoB = curriculumInfoB;
-    }
-
-    public JButton getAcademicYearB() {
-        return academicYearB;
-    }
-
-    public void setAcademicYearB(JButton academicYearB) {
-        this.academicYearB = academicYearB;
-    }
-
-    public JButton getExamDetailB() {
-        return examDetailB;
-    }
-
-    public void setExamDetailB(JButton examDetailB) {
-        this.examDetailB = examDetailB;
-    }
-
-    public JButton getResetAllPasswords() {
-        return resetAllPasswords;
-    }
-
-    public void setResetAllPasswords(JButton resetAllPasswords) {
-        this.resetAllPasswords = resetAllPasswords;
-    }
-
-    public JButton getViewDetailsCurrPend() {
-        return viewDetailsCurrPend;
-    }
-
-    public void setViewDetailsCurrPend(JButton viewDetailsCurrPend) {
-        this.viewDetailsCurrPend = viewDetailsCurrPend;
-    }
-
-    public JButton getCreateNewTeacherB() {
-        return createNewTeacherB;
-    }
-
-    public void setCreateNewTeacherB(JButton createNewTeacherB) {
-        this.createNewTeacherB = createNewTeacherB;
-    }
-
-    public JButton getAssignTeacherToSubjectB() {
-        return assignTeacherToSubjectB;
-    }
-
-    public void setAssignTeacherToSubjectB(JButton assignTeacherToSubjectB) {
-        this.assignTeacherToSubjectB = assignTeacherToSubjectB;
-    }
-
-    public JButton getRemoveTeacherB() {
-        return removeTeacherB;
-    }
-
-    public void setRemoveTeacherB(JButton removeTeacherB) {
-        this.removeTeacherB = removeTeacherB;
-    }
-
-    public JButton getRemoveTeacherSubjectB() {
-        return removeTeacherSubjectB;
-    }
-
-    public void setRemoveTeacherSubjectB(JButton removeTeacherSubjectB) {
-        this.removeTeacherSubjectB = removeTeacherSubjectB;
-    }
-
-    public JButton getViewStudentCurrB() {
-        return viewStudentCurrB;
-    }
-
-    public void setViewStudentCurrB(JButton viewStudentCurrB) {
-        this.viewStudentCurrB = viewStudentCurrB;
-    }
-
-    public JButton getAddStudentB() {
-        return addStudentB;
-    }
-
-    public void setAddStudentB(JButton addStudentB) {
-        this.addStudentB = addStudentB;
-    }
-
-    public JButton getRemoveStudentB() {
-        return removeStudentB;
-    }
-
-    public void setRemoveStudentB(JButton removeStudentB) {
-        this.removeStudentB = removeStudentB;
-    }
-
-    public JButton getNotifyStudentsB() {
-        return notifyStudentsB;
-    }
-
-    public void setNotifyStudentsB(JButton notifyStudentsB) {
-        this.notifyStudentsB = notifyStudentsB;
-    }
-
-    public JButton getCreateNewSubB() {
-        return createNewSubB;
-    }
-
-    public void setCreateNewSubB(JButton createNewSubB) {
-        this.createNewSubB = createNewSubB;
-    }
-
-    public JButton getEditSubB() {
-        return editSubB;
-    }
-
-    public void setEditSubB(JButton editSubB) {
-        this.editSubB = editSubB;
-    }
-
-    public JButton getRemoveSubB() {
-        return removeSubB;
-    }
-
-    public void setRemoveSubB(JButton removeSubB) {
-        this.removeSubB = removeSubB;
-    }
-
-    public JButton getSetExamCountB() {
-        return setExamCountB;
-    }
-
-    public void setSetExamCountB(JButton setExamCountB) {
-        this.setExamCountB = setExamCountB;
-    }
-
-    public JButton getChangePassB() {
-        return changePassB;
-    }
-
-    public void setChangePassB(JButton changePassB) {
-        this.changePassB = changePassB;
-    }
-
-    public JButton getChangeMaxB() {
-        return changeMaxB;
-    }
-
-    public void setChangeMaxB(JButton changeMaxB) {
-        this.changeMaxB = changeMaxB;
-    }
-
-    public JButton getSetMaxOpSubjectsB() {
-        return setMaxOpSubjectsB;
-    }
-
-    public void setSetMaxOpSubjectsB(JButton setMaxOpSubjectsB) {
-        this.setMaxOpSubjectsB = setMaxOpSubjectsB;
-    }
-
-    public JButton getSetMinOpSubjectsB() {
-        return setMinOpSubjectsB;
-    }
-
-    public void setSetMinOpSubjectsB(JButton setMinOpSubjectsB) {
-        this.setMinOpSubjectsB = setMinOpSubjectsB;
-    }
-
-    public JButton getSetReqSB() {
-        return setReqSB;
-    }
-
-    public void setSetReqSB(JButton setReqSB) {
-        this.setReqSB = setReqSB;
+    public void setSendMessageB(JButton sendMessageB) {
+        this.sendMessageB = sendMessageB;
     }
 }

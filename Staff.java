@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Staff extends User{
@@ -88,6 +89,7 @@ public class Staff extends User{
         this.notificationsEnabled = notificationsEnabled;
     }
 
+
     public double getClockInTime() {
         return clockInTime;
     }
@@ -102,5 +104,26 @@ public class Staff extends User{
 
     public void setClockOutTime(double clockOutTime) {
         this.clockOutTime = clockOutTime;
+    }
+
+    public Shift getNextShift(){
+        LocalDate today = LocalDate.now();
+        Shift closestShift = null;
+
+        if (assignedShifts.isEmpty()) {
+            System.out.println("NO SHIFTS ERROR");
+        } else {
+            for (Shift shift : assignedShifts) {
+                LocalDate shiftDate = shift.getDate();
+
+                if (shiftDate.isAfter(today)) {
+                    if (closestShift == null || shiftDate.isBefore(closestShift.getDate())) {
+                        closestShift = shift;
+                    }
+                }
+            }
+        }
+
+        return closestShift;
     }
 }
